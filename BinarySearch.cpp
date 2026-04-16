@@ -12,7 +12,7 @@ void input()
         cout << "Masukkan banyaknya elemen pada array (maksimal 10): ";
         cin >> nPanjang;
 
-        if (nPanjang <=10)
+        if (nPanjang <= 10)
         {
             break;
         }
@@ -28,7 +28,7 @@ void input()
 
     for (int i = 0; i < nPanjang; i++)
     {
-        cout << "Data ke-" << (i + i) << " = ";
+        cout << "Data ke-" << (i + 1) << " = "; 
         cin >> element[i];
     }
 }
@@ -36,11 +36,12 @@ void input()
 void bubbleSortArray()
 {
     int pass = 1;
+    if (nPanjang <= 1) return; 
     do
     {
         for (int j = 0; j <= nPanjang - 1 - pass; j++)
         {
-            if (element[j] > elemt[j + 1])
+            if (element[j] > element[j + 1]) 
             {
                 int temp = element[j];
                 element[j] = element[j + 1];
@@ -57,7 +58,7 @@ void display()
     cout << "    Elemen Array Setelah Diurutkan (Asc)     \n";
     cout << "===========================================\n";
 
-    for (int j = o; j < nPanjang; j++)
+    for (int j = 0; j < nPanjang; j++) 
     {
         cout << element[j];
         if (j < nPanjang - 1)
@@ -82,28 +83,29 @@ void binarySearch()
 
         int low = 0;
         int high = nPanjang - 1;
+        bool found = false; 
 
-        do
+        while (low <= high) 
         {
             int mid = (low + high) / 2;
 
             if (element[mid] == x)
             {
                 cout << "\n [✓] Elemen " << x << " ditemukan pada indeks " << mid << "\n";
-                return;
+                found = true;
+                break;
             }
-            if (x < element[mid])
+            else if (x < element[mid])
             {
                 high = mid - 1;
             }
-            if (x < element[mid])
+            else
             {
                 low = mid + 1;
             }
+        }
 
-        } while (low > high);
-
-        if (low > high)
+        if (!found)
         {
             cout << "\n[x] Elemen " << x << " tidak ditemukan dalam array.\n";
         }
@@ -120,4 +122,5 @@ int main()
     bubbleSortArray();
     display();
     binarySearch();
+    return 0;
 }
